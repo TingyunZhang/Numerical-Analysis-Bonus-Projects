@@ -1,38 +1,5 @@
 # ============================================================
 # STEP 5 — Improved Performance and Error Analysis
-#
-# Key improvements:
-#
-# [R1] Adaptive step-size: Now explicitly logs and plots how the
-#      local tolerance threshold is dynamically set inversely
-#      proportional to the spectral residual at each step.
-#      A dedicated plot (plot_adaptive_tolerance_mechanism) shows
-#      tol(t) vs residual(t) for Full_STORK.
-#
-# [R2] Projection corrector: Added mathematical verification that
-#      the discrete projection does NOT permanently misalign the
-#      vector field:
-#        - Tracks divergence-free norm before/after projection
-#        - Plots pre- vs post-projection divergence at each step
-#        - Adds a summary panel showing max ||div||_2 over time
-#
-# [R3] Multi-scale pyramid: Added explicit frequency-band
-#      decomposition plot showing energy in low-freq vs high-freq
-#      bands across NFEs for Full_STORK, making the pyramid logic
-#      directly visible rather than inferred from step-size history.
-#
-# [R4] Reproducibility: Benchmarking now uses a fixed np.random.seed
-#      and JAX PRNGKey, and wall-time is measured with
-#      multiple warm-up passes to stabilise JIT compilation.
-#      Results are printed with both mean and std over repeated runs
-#      to make timing variance explicit.
-#
-# [R5] Perturbed-IC robustness: The FullSTORKSolver now uses a
-#      soft projection (blend factor alpha proportional to residual)
-#      instead of hard projection, which suppresses high-frequency
-#      striped artefacts when the initial condition is off-manifold.
-#      The perturbed-IC spatial fields now show smoother error maps.
-#
 # ============================================================
 
 import os
